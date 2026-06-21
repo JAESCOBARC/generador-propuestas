@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
 import json
+import os
 from pathlib import Path
 
 st.set_page_config(
@@ -24,13 +25,16 @@ def guardar_config(data: dict):
 
 cfg = cargar_config()
 
+# API key: config.json (local) → variable de entorno (Render) → vacío
+api_key_default = cfg.get("api_key") or os.environ.get("GOOGLE_API_KEY", "")
+
 # ─── Sidebar: API key + perfil profesional ───────────────────────────────────
 with st.sidebar:
     st.title("⚙️ Configuración")
 
     api_key = st.text_input(
         "🔑 Google AI API Key",
-        value=cfg.get("api_key", ""),
+        value=api_key_default,
         type="password",
         placeholder="AIza...",
         help="Obtén tu clave GRATIS en aistudio.google.com → Get API key"
