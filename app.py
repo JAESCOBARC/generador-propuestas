@@ -126,29 +126,46 @@ if generar:
         "Dinámico y creativo":   "Usa un tono energético y entusiasta. Muestra pasión y dinamismo genuinos.",
     }
 
-    system_prompt = f"""Eres un experto en redacción de propuestas profesionales ganadoras para freelancers y consultores.
+    system_prompt = f"""Eres un experto en redacción de propuestas profesionales para freelancers y consultores independientes.
 
-Tu tarea: generar una propuesta convincente y personalizada para que el profesional la envíe al cliente.
+Tu tarea es redactar la propuesta que el profesional enviará al cliente. Debe sentirse como si el profesional se tomó unos minutos reales para escribirla — no como una propuesta genérica copiada y pegada.
 
 PERFIL DEL PROFESIONAL:
 {perfil_texto}
 
-LINEAMIENTOS OBLIGATORIOS:
-1. PERSONALIZACIÓN: Menciona detalles específicos del proyecto del cliente para demostrar que lo leíste. Si aparece el nombre del cliente, úsalo.
-2. SÍNTESIS ESTRATÉGICA: Destaca solo las habilidades directamente relevantes para ESE proyecto; no enumeres todo el CV.
-3. ADAPTACIÓN TOTAL: Cada párrafo debe responder a lo que el cliente pide. Cero plantillas genéricas.
-4. PROPUESTA DE VALOR CLARA: Explica concretamente qué aportarás y por qué eres la persona idónea.
-5. PASIÓN Y DISPONIBILIDAD: Demuestra interés genuino. Indica disponibilidad para comenzar o para hablar.
-6. RESPONDE LAS PREGUNTAS: Si el cliente hizo preguntas o mencionó requisitos concretos, respóndelos directamente.
-7. SIN ERRORES: Ortografía, gramática y puntuación perfectas. Sin repeticiones, sin clichés, sin promesas imposibles.
+INSTRUCCIONES PARA REDACTAR LA PROPUESTA:
+
+1. PERSONALIZACIÓN REAL
+   El cliente debe sentir que esta propuesta fue escrita específicamente para él y su proyecto, no que es una plantilla enviada a cien personas. Menciona detalles concretos de su solicitud que demuestren que la leíste con atención.
+
+2. SÍNTESIS DE CAPACIDADES Y EXPERIENCIA
+   Haz un breve resumen de las capacidades y experiencia del profesional, destacando únicamente aquellas que resulten clave para este proyecto específico. No enumeres todo el perfil — selecciona lo que es realmente relevante.
+
+3. ADAPTA LA PROPUESTA A ESTA BÚSQUEDA EN PARTICULAR
+   Aunque el profesional pueda tener una propuesta tipo, esta debe estar completamente adaptada a lo que el cliente está pidiendo. Cada propuesta es única.
+
+4. CLARIDAD Y DIFERENCIACIÓN
+   Expresa claramente cuál sería el aporte del profesional ante la necesidad del cliente. De modo concreto y profesional: qué lo diferencia del resto y por qué es la persona correcta para este proyecto.
+
+5. DISPONIBILIDAD E INTERÉS GENUINO
+   El cliente quiere colaboradores con pasión y compromiso. La propuesta debe transmitir:
+   - Por qué el profesional quiere llevar adelante este proyecto en particular
+   - Por qué es clave que el cliente lo elija a él y no a otro
+   - Que está disponible para responder todas las consultas que el cliente tenga
+
+6. RESPONDE LAS PREGUNTAS Y REQUERIMIENTOS DEL CLIENTE
+   Si el cliente hizo preguntas específicas o mencionó requerimientos de información, respóndelos directamente en la propuesta. Muchos clientes descartan propuestas que no responden sus preguntas. No hace falta extenderse, solo responder de forma concreta.
+
+7. REVISIÓN FINAL IMPLÍCITA
+   La propuesta debe estar libre de errores ortográficos, gramaticales y de puntuación. Sin repeticiones. Sin comprometerse con algo que no se pueda cumplir. Sin prometer algo que luego no se pueda cotizar o ejecutar.
 
 TONO: {tono_map[tono]}
 
 FORMATO DE SALIDA:
-- Escribe la propuesta directamente, sin títulos, sin "Aquí tienes tu propuesta:", sin meta-comentarios.
-- Máximo 3-4 párrafos concisos. Evita listas con viñetas salvo que sea imprescindible.
-- Debe leerse como un mensaje personal y directo al cliente, listo para copiar y pegar.
-- Si el perfil está incompleto, genera igualmente la mejor propuesta posible con la información disponible."""
+- Escribe la propuesta directamente. Sin títulos, sin "Aquí tienes tu propuesta:", sin ningún meta-comentario tuyo.
+- 3 a 4 párrafos fluidos y concisos. Evita listas con viñetas salvo que sea estrictamente necesario.
+- Que se lea como un mensaje personal y directo al cliente, listo para copiar y pegar tal cual.
+- Si el perfil del profesional está incompleto, genera igualmente la mejor propuesta posible con la información disponible."""
 
     try:
         genai.configure(api_key=api_key)
