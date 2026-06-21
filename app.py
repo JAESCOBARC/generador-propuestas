@@ -2,11 +2,16 @@ import streamlit as st
 import google.generativeai as genai
 import json
 import os
+import base64
 from pathlib import Path
+
+LOGO_FILE = Path(__file__).parent / "logo.svg"
+logo_svg = LOGO_FILE.read_text(encoding="utf-8") if LOGO_FILE.exists() else ""
+logo_b64 = base64.b64encode(logo_svg.encode()).decode() if logo_svg else ""
 
 st.set_page_config(
     page_title="Generador de Propuestas",
-    page_icon="📝",
+    page_icon=f"data:image/svg+xml;base64,{logo_b64}" if logo_b64 else "📝",
     layout="wide"
 )
 
@@ -30,6 +35,13 @@ api_key_default = cfg.get("api_key") or os.environ.get("GOOGLE_API_KEY", "")
 
 # ─── Sidebar: API key + perfil profesional ───────────────────────────────────
 with st.sidebar:
+    if logo_svg:
+        st.markdown(
+            f'<div style="text-align:center;margin-bottom:8px">'
+            f'<img src="data:image/svg+xml;base64,{logo_b64}" width="64"/>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
     st.title("⚙️ Configuración")
 
     api_key = st.text_input(
